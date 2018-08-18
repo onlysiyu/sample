@@ -2,5 +2,5 @@
 @section('title', 'about')
 
 @section('content')
-    <h1>关于页</h1>
+    <h1>about</h1>
 @stop

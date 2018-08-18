@@ -1,4 +1,16 @@
 @extends('layouts.default')
+
 @section('content')
-    <h1>主页</h1>
+  <div class="jumbotron">
+    <h1>Halo</h1>
+    <p class="lead">
+      welcome to <a href="{{ route('home') }}">兔子🐇 星球</a>
+    </p>
+    <p>
+      let's start ~
+    </p>
+    <p>
+      <a class="btn btn-lg btn-success" href="{{ route('signup') }}" role="button">sign up</a>
+    </p>
+  </div>
 @stop

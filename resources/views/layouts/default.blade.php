@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>@yield('title', 'Sample') - by SIYU</title>
-    </head>
-    <body>
-        @yield('content')
-    </body>
+  <head>
+    <title>@yield('title', '兔子🐇 星球') - by SIYU</title>
+    <link rel="stylesheet" href="/css/app.css">
+  </head>
+  <body>
+    @include('layouts._header')
+
+
+    <div class="container">
+        <div class="col-md-offset-1 col-md-10">
+             @yield('content')
+             @include('layouts._footer')
+        </div>
+    </div>
+  </body>
 </html>
