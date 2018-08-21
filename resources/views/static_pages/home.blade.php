@@ -4,7 +4,7 @@
   <div class="jumbotron">
     <h1>Halo</h1>
     <p class="lead">
-      welcome to <a href="{{ route('home') }}">兔子🐇 星球</a>
+      welcome to <a href="{{ route('home') }}">Rabbits🐇 Planet</a>
     </p>
     <p>
       let's start ~
