@@ -1,10 +1,8 @@
-
-// Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 $navbar-color: #3c3e42;
 
-/* universal */
+
 
 body {
   padding-top: 60px;
@@ -22,7 +20,7 @@ textarea {
   text-align: center;
 }
 
-/* typography */
+
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
@@ -49,7 +47,7 @@ p {
   line-height: 1.7em;
 }
 
-/* header */
+
 
 .navbar-inverse {
   background-color: $navbar-color;
@@ -69,7 +67,7 @@ p {
   }
 }
 
-/* footer */
+
 
 footer {
     margin-top: 45px;

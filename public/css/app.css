@@ -8350,8 +8350,6 @@ button.close {
   }
 }
 
-/* universal */
-
 body {
   padding-top: 60px;
 }
@@ -8367,8 +8365,6 @@ textarea {
 .jumbotron {
   text-align: center;
 }
-
-/* typography */
 
 h1,
 h2,
@@ -8400,8 +8396,6 @@ p {
   line-height: 1.7em;
 }
 
-/* header */
-
 .navbar-inverse {
   background-color: #3c3e42;
 }
@@ -8420,8 +8414,6 @@ p {
 #logo:hover {
   color: #fff;
 }
-
-/* footer */
 
 footer {
   margin-top: 45px;
