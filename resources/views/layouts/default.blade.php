@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>@yield('title', '兔子🐇 星球') - by SIYU</title>
+    <title>@yield('title', 'Rabbits🐇 Planet') - by SIYU</title>
     <link rel="stylesheet" href="/css/app.css">
   </head>
   <body>
@@ -10,6 +10,7 @@
 
     <div class="container">
         <div class="col-md-offset-1 col-md-10">
+             @yield('shared._messages')
              @yield('content')
              @include('layouts._footer')
         </div>
