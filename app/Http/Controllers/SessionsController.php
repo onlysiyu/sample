@@ -30,11 +30,15 @@ class SessionsController extends Controller
         ]);
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
-            // 登录成功后的相关操作
-            session()->flash('success', 'welcome back ~ mew');
-            return redirect()->intended(route('users.show', [Auth::user()]));
+            if (Auth::user()->activated) {
+                session()->flash('success', 'welcome back ~ mew');
+                return redirect()->intended(route('users.show', [Auth::user()]));
+            } else {
+                Auth::logout();
+                session()->flash('warning', 'your account is not activated, please check the registered mail in the mailbox for activation ~ mew');
+                return redirect('/');
+            }
         } else {
-            //登录失败后的操作
             session()->flash('danger', 'sorry, your email and password do not match ~ mew');
             return redirect()->back();
         }

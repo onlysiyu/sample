@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
+use Mail;
 //use App\Http\Request;
 
 class UsersController extends Controller
@@ -13,7 +14,7 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth', [
-            'except' => ['show', 'create', 'store', 'index']
+            'except' => ['show', 'create', 'store', 'index', 'confirmEmail']
         ]);
 
         $this->middleware('guest', [
@@ -48,9 +49,14 @@ class UsersController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        Auth::login($user);
-        session()->flash('success', 'Welcom to Rabbits🐇 Planet~');
-        return redirect()->route('users.show', [$user]);
+        $this->sendEamilConfirmationTo($user);
+        session()->flash('success', 'please check that the verification message has been sent to your registered mailbox ~ mew');
+        return redirect('/');
+
+
+        //Auth::login($user);
+        //session()->flash('success', 'Welcom to Rabbits🐇 Planet~');
+        //return redirect()->route('users.show', [$user]);
     }
 
 
@@ -98,5 +104,35 @@ class UsersController extends Controller
     {
         $users = User::paginate(10);
         return view('users.index', compact('users'));
+    }
+
+
+
+    public function sendEamilConfirmationTo($user)
+    {
+        $view    = 'emails.confirm';
+        $data    = compact('user');
+        $from    = 'siyu9709@gmail.com';
+        $name    = 'siyu';
+        $to      = $user->email;
+        $subject = "thanks for your registration, please confirm your eamil ~ mew";
+
+        Mail::send($view, $data, function ($message) use ($from, $name, $to, $subject) {
+            $message->from($from, $name)->to($to)->subject($subject);
+        });
+    }
+
+
+    public function confirmEmail($token)
+    {
+        $user = User::where('activation_token', $token)->firstOrFail();
+
+        $user->activated        = true;
+        $user->activation_token = null;
+        $user->save();
+
+        Auth::login($user);
+        session()->flash('success', 'congratulations, the activation was successfully ~ mew');
+        return redirect()->route('users.show', [$user]);
     }
 }
