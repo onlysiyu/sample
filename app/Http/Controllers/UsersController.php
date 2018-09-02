@@ -29,10 +29,17 @@ class UsersController extends Controller
     }
 
 
+
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        $statuses = $user->statuses()
+                            ->orderBy('created_at')
+                            ->paginate(10);
+
+        return view('users.show', compact('user', 'statuses'));
     }
+
+
 
 
     public function store(Request $request)
@@ -112,8 +119,8 @@ class UsersController extends Controller
     {
         $view    = 'emails.confirm';
         $data    = compact('user');
-        $from    = 'siyu9709@gmail.com';
-        $name    = 'siyu';
+        //$from    = 'siyu9709@gmail.com';
+        //$name    = 'siyu';
         $to      = $user->email;
         $subject = "thanks for your registration, please confirm your eamil ~ mew";
 
@@ -135,4 +142,5 @@ class UsersController extends Controller
         session()->flash('success', 'congratulations, the activation was successfully ~ mew');
         return redirect()->route('users.show', [$user]);
     }
+
 }
