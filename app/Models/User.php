@@ -62,8 +62,12 @@ class User extends Authenticatable
 
     public function feed()
     {
+        // 通过 followings 方法取出所有关注用户的信息，再借助 pluck 方法将 id 进行分离并赋值给 user_ids
         $user_ids = Auth::user()->followings->pluck('id')->toArray();
+        // 将当前用户的 id 加入到 user_ids 中
         array_push($user_ids, Auth::user()->id);
+
+        //补充 $user->followings 与 $user->followings() 调用时返回的数据不一样，前者返回Eloquent集合，后者为数据库请求构建器
 
         return Status::whereIn('user_id', $user_ids)
                                 ->with('user')

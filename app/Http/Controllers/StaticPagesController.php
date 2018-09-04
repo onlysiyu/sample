@@ -4,7 +4,7 @@ namespace App\Http\Controllers; //命名空间在PHP5.3之后的语言特性；�
 
 use Illuminate\Http\Request; //use引用类 引用后可调用
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests;
 use App\Models\Status;
 use Auth;
 

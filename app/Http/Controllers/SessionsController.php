@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-//use App\Http\Request;
+use App\Http\Requests;
 
 class SessionsController extends Controller
 {
