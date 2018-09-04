@@ -143,4 +143,25 @@ class UsersController extends Controller
         return redirect()->route('users.show', [$user]);
     }
 
+
+
+    public function followings(User $user)
+    {
+        $users = $user->followings()->paginate(10);
+        $title = 'attention';
+
+        return view('users.show_follow', compact('users', 'title'));
+    }
+
+
+
+    public function followers(User $user)
+    {
+        $users = $user->followers()->paginate(10);
+        $title = 'fans';
+
+        return view('users.show_follow', compact('users', 'title'));
+    }
+
+
 }
